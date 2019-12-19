@@ -1,0 +1,58 @@
+create table users (
+    id serial primary key,
+    name text,
+    handle text,
+    password text
+);
+
+create table tweets (
+    id serial primary key,
+    created_at timestamptz default now(),
+    message text,
+    user_id integer
+);
+
+insert into users 
+    (name, handle, password)
+values 
+    ('Zara Melyan', 'zarmel', '12345'),
+    ('Jesus Christ', 'thesavior', '666');
+
+insert into tweets
+    (message, user_id)
+values
+    ('O come all ye faithful', 2);
+
+select 
+    tweets.id,
+    tweets.message,
+    tweets.created_at,
+    users.name,
+    users.handle
+from tweets, 
+    users
+where 
+    tweets.user_id = users.id;
+
+    
+select 
+    tweets.id,
+    tweets.message,
+    tweets.created_at,
+    users.name,
+    users.handle
+from tweets
+inner join users on (tweets.user_id = users.id);
+
+select 
+    tweets.id,
+    tweets.message,
+    tweets.created_at,
+    users.name,
+    users.handle
+from tweets, 
+    users
+where 
+    tweets.user_id = users.id
+and
+users.id = 1;

@@ -1,0 +1,5 @@
+postgres://:86a90a44dac35c036b44670adc35462ab3baa887a6bda62faf90e9fb1ef3e3b8@ec2-174-129-254-216.compute-1.amazonaws.com:5432/dcvj9eekm3l9rh
+user: pwobfhjdnlsaii
+pass: 86a90a44dac35c036b44670adc35462ab3baa887a6bda62faf90e9fb1ef3e3b8
+next: ec2-174-129-254-216.compute-1.amazonaws.com:5432
+next: dcvj9eekm3l9rh
