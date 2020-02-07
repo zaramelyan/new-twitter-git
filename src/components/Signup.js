@@ -42,12 +42,12 @@ class Signup extends React.Component {
             }
 
         await this.handleNewUserSubmit(name, handle, password);
-        history.push('/')
+        history.push('/home')
     }
 
     render(){
         return(
-            <div>
+            <div className="container">
                 <h1>Sign up</h1>
                 <form>
                     <div>

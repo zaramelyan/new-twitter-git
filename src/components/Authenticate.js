@@ -7,7 +7,7 @@ class Authenticate extends React.Component {
   async componentDidMount() {
     const { history } = this.props;
     const isAuthenticated = await checkSession();
-
+    console.log(isAuthenticated);
     if (!isAuthenticated) {
       history.replace('/login')
     } else {

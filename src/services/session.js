@@ -18,7 +18,9 @@ export async function checkSession() {
             'Content-Type': 'application/json',
             'X-Auth-Token': localStorage.getItem('twitter_clone_token')
         }
+        
     });
+    console.log(res)
     return res.status === 200;
 }
 

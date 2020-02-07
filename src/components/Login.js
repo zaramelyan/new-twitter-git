@@ -1,6 +1,7 @@
 import React from "react";
 import { createSession } from '../services/session';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -50,6 +51,7 @@ class Login extends React.Component {
         const { error, isLoggingIn } = this.state;
         return(
             <div>
+                <div className='container'>
                 <h1>Login</h1>
                 <form>
                     <div>
@@ -82,6 +84,7 @@ class Login extends React.Component {
                         {error && <p>Unable to log in: {error.message}</p>}
                     </div>
                 </form>
+                </div>
             </div>
         )
       }

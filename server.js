@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('build'));
 
-const port = process.env.PORT;
+let port = process.env.PORT;
 const secret = process.env.SECRET;
 
 // const secret = 'somethingsecret';
@@ -86,7 +86,8 @@ api.get('/session', authenticate, function (req, res) {
 api.post('/session', async function (req, res) {
   const { handle, password } = req.body;
   const user = await getUserByHandle(handle);
-
+  console.log(handle, password)
+  console.log(user)
   if (!user) {
     return res.status(401).send({ error: 'Unknown user' });
   }
@@ -99,7 +100,7 @@ api.post('/session', async function (req, res) {
     id: user.id,
     handle: user.handle,
     name: user.name
-  }, new Buffer(secret, 'base64'));
+  }, new Buffer.from(secret, 'base64'));
 
   res.send({
     token: token
@@ -135,5 +136,11 @@ api.delete('/tweets/:tweetid', authenticate, async function (req, res) {
 
 app.use('/api', api);
 
-app.listen(3001)
-console.log('Running on port 3001');
+//Listening to port
+if (port == null || port === "") {
+  port = 8000;
+}
+
+app.listen(port)
+console.log(`Running on port ${port}`);
+

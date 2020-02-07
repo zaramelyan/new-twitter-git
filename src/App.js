@@ -1,7 +1,6 @@
-import "./App.css";
-
-import React from "react"
-import {Route, HashRouter, Switch} from "react-router-dom"
+import React from "react";
+import {Route, HashRouter, Switch} from "react-router-dom";
+import './App.css';
 
 import Authenticate from "./components/Authenticate";
 import Feed from "./components/Feed";
@@ -11,7 +10,7 @@ import Signup from "./components/Signup";
 
 function App() {
   return (
-    <div>
+    <div className='hei'>
       <HashRouter>
         <Switch>
           <Route path="/" exact component={Authenticate} />

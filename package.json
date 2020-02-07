@@ -21,6 +21,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "start": "node server.js",
+    "develop": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
