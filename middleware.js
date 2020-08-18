@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 const secret = process.env.SECRET;
 
-function authenticate(req, res, next) {
-    const token = req.headers['x-auth-token'];
-  
+function authenticate(req, res, next) { 
     try {
+      const token = req.headers['x-auth-token'];
       const { id, name, handle } = jwt.verify(
         token,
         new Buffer.from(secret, 'base64')

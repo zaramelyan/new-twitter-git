@@ -1,18 +1,21 @@
-const API_URL = '/api';
+const API_URL = '/api/session';
 
-export function createSession({ handle, password }) {
-    return fetch(`${API_URL}/session`, {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
+export async function createSession({ handle, password }) {
+	return await fetch(`${API_URL}`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ handle, password })
-    })
-    .then((res) => res.json())
+        body: JSON.stringify({
+            handle,
+            password
+        })
+	})
+        .then((res) => res.json())
 }
 
 export async function checkSession() {
-    const res = await fetch(`${API_URL}/session`, {
+    const res = await fetch(`${API_URL}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

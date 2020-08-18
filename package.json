@@ -20,7 +20,8 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "start": "node server.js",
+    "start": "react-scripts start",
+    "serve": "nodemon server.js",
     "develop": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,5 +42,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:8000",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
