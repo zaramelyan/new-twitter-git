@@ -82,8 +82,12 @@ async populateTweets() {
         return (
           <div key={id} style={styles}>
             <p>{name} (@{handle})</p>
+            <p>{created_at}</p>
             <p>{message}</p>
-            <button onClick={this.handleDeleteTweet.bind(this, id, user_id)}>Delete tweet</button>
+            {
+              this.state.session.id === user_id ? 
+            <button onClick={this.handleDeleteTweet.bind(this, id, user_id)}>Delete tweet</button> : <></>
+            }
           </div>
         )
       })

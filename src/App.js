@@ -7,14 +7,17 @@ import Feed from "./components/Feed";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Signup from "./components/Signup";
+import withAuth from "./components/withAuth";
+
+//create wrapper
 
 function App() {
   return (
-    <div className='hei'>
+    <div className='app'>
       <HashRouter>
         <Switch>
           <Route path="/" exact component={Authenticate} />
-          <Route path="/home" component={Feed} />
+          <Route path="/home" component={withAuth(Feed)} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/signup" component={Signup} />

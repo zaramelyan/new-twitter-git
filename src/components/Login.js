@@ -8,30 +8,31 @@ class Login extends React.Component {
         super(props);
 
         this.state = {
-            loginForm: {
+          
                 handle: "",
                 password: "",
-            },
+            
         }
     }
 
     handleInputChange(field, event) {
         this.setState({
-            loginForm: {
-                ...this.state.loginForm,
                 [field]: event.target.value,
-            }
         })
+        console.log(this.state.handle, this.state.password)
     }
 
     async handleLoginAttempt(event) {
+        console.log(this.state)
         event.preventDefault();
         const { history } = this.props;
-        const { handle, password } = this.state.loginForm;
-
+        const { handle, password } = this.state;
        try { 
-           this.setState({ isLoggingIn: true })
-           const { token, error } = await createSession({ handle, password });
+        this.setState({ isLoggingIn: true })
+       console.log("here " + this.state.handle)
+        const { token, error } = await createSession({handle, password});
+        localStorage.setItem('twitter_clone_token', token)
+        history.push('/');
         if (error) {
             throw new Error(error);
         }
@@ -39,9 +40,7 @@ class Login extends React.Component {
         if (!token) {
             throw new Error('No token received, try again.');
         }
-        
-        localStorage.setItem('twitter_clone_token', token)
-        history.push('/');
+     
 
     } catch (error) {
         this.setState({ error, isLoggingIn: false });
@@ -59,7 +58,7 @@ class Login extends React.Component {
                             Handle:
                             <input 
                             type="text"
-                            value = {this.state.loginForm.handle}
+                            value = {this.state.handle}
                             onChange={this.handleInputChange.bind(this, "handle")}
                             ></input>
                         </label>
@@ -69,7 +68,7 @@ class Login extends React.Component {
                             Password:
                             <input 
                             type="password"
-                            value = {this.state.loginForm.password}
+                            value = {this.state.password}
                             onChange={this.handleInputChange.bind(this, "password")}
                             ></input>
                         </label>

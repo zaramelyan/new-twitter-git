@@ -14,13 +14,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('build'));
 
-let port = process.env.PORT;
-const secret = process.env.SECRET;
 
-// const secret = 'somethingsecret';
+let port = process.env.PORT;
+let secret = process.env.SECRET;
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, 
+  user: process.env.DBUSER,
+  host: process.env.DBHOST,
+  database: process.env.DB,
+  password: process.env.DBPASS,
+  port: process.env.DBPORT,
 });
 
 function getTweets() {
@@ -30,7 +33,8 @@ function getTweets() {
       tweets.message,
       tweets.created_at,
       users.name,
-      users.handle
+      users.handle,
+      tweets.user_id
     FROM
       tweets
     INNER JOIN users ON
@@ -77,6 +81,7 @@ function getUserByHandle(handle) {
 
 const api = express();
 
+
 api.get('/session', authenticate, function (req, res) {
  res.send({ 
    message: 'You are authenticated'
@@ -86,8 +91,7 @@ api.get('/session', authenticate, function (req, res) {
 api.post('/session', async function (req, res) {
   const { handle, password } = req.body;
   const user = await getUserByHandle(handle);
-  console.log(handle, password)
-  console.log(user)
+  console.log("user info: " + handle, password)
   if (!user) {
     return res.status(401).send({ error: 'Unknown user' });
   }
@@ -101,10 +105,7 @@ api.post('/session', async function (req, res) {
     handle: user.handle,
     name: user.name
   }, new Buffer.from(secret, 'base64'));
-
-  res.send({
-    token: token
-  });
+  res.status(200).send({token})
 });
 
 api.post('/tweets', authenticate, async function(req, res) {

@@ -25,11 +25,14 @@ class Signup extends React.Component {
     }
 
     async handleNewUserSubmit(name, handle, password) {
+        const { history } = this.props;
+        console.log("Went here " + history)
         await createUser(name, handle, password);
+        history.push('/login');
     }
 
     async checkPass(event) {
-        const { history } = this.props;
+    
         const { name, handle, password, passwordcheck} = this.state.SignUpForm;
 
         event.preventDefault();
@@ -42,7 +45,6 @@ class Signup extends React.Component {
             }
 
         await this.handleNewUserSubmit(name, handle, password);
-        history.push('/home')
     }
 
     render(){
@@ -77,4 +79,4 @@ class Signup extends React.Component {
     }
 }
 
-export default Signup
+export default Signup;
