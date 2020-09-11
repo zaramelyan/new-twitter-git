@@ -43,7 +43,6 @@
     ]
   },
   "homepage" : "https://zarmel-academy-twitter-clone.herokuapp.com/",
-  "proxy" : "8000",
   "devDependencies": {
     "nodemon": "^2.0.4"
   }
